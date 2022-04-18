@@ -1,0 +1,14 @@
+#lang simply-scheme
+
+(define (dupls-removed sen) (fun sen sen))
+
+(define (fun sent sen)
+  (if (empty? sen)
+       sent
+       (if (member? (first sent) (bf sent))
+           (fun (bf sent) (bf sen))
+           (fun (se (bf sent) (first sent)) (bf sen)))))
+
+(dupls-removed '(a b c a e d e b))
+(dupls-removed '(a b c))
+(dupls-removed '(a a a a b a a))
