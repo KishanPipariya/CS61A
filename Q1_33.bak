@@ -1,7 +1,7 @@
 #lang sicp
 (define (filtered-accumulate filter combiner null-value term a next b)
   (cond ((> a b) null-value)
-        ((equal? (filter a b) #t)
+        ((= (filter (term a) #t))
          (combiner (term a) (filtered-accumulate filter combiner null-value term (next a) next b)))
         (else (combiner null-value (filtered-accumulate filter combiner null-value term (next a) next b)))))
 
@@ -9,26 +9,6 @@
 
 (define (next1 x) (+ x 1))
 
-(define (prime a b)
-  (cond ((< b 2) #f)
-        ((= a b) #t)
-        ((= (modulo b a) 0) #f)
-        (else (prime (+ a 1) b))))
-            
-(define (prime? n x) (prime 2 n))
-
-
-(define (filt2? x n)
-  (if (= (modulo n x) 0)
-      #f #t))
-
-(define (term2 x) x)
+(define prime? 0)
 
 (define (q1 a  b) (filtered-accumulate prime? + 0 term1 a next1 b))
-
-(prime? 5 0)
-(q1 1 5)
- 
-(define (q2 n) (filtered-accumulate filt2? * 1 term2 1 next1 n))
-
-(q2 5)
