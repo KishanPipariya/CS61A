@@ -1,7 +1,4 @@
 #lang sicp
-(define (new-if predicate then-clause else-clause)
-  (cond (predicate then-clause)
-        (else else-clause)))
 
 (define (average x y) (/ (+ x y) 2))
 
@@ -16,4 +13,4 @@
 (define (sqrt-iter guess prev-guess x) (if (good-enough? guess prev-guess) guess (sqrt-iter (improve guess x) guess x)))
 
 (define (sqrt x) (sqrt-iter 1.0 100.0 x))
-(sqrt 100000000000)
+(sqrt 100000000000) 
